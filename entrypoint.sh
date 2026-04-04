@@ -71,7 +71,7 @@ else
     do
         echo -e "[SYSTEM] Enabling $LINE..."
 
-        modfile=$(find "$modpath/$LINE" -name '*.tmod' | sort | uniq | tail -n 1)
+        modfile=$(find "$modpath/$LINE" -name '*.tmod' | sort -V | uniq | tail -n 1)
         modname=$(basename "${modfile%.tmod}")
 
         if [ -z "$modfile" ]; then
@@ -98,7 +98,7 @@ fi
 
 
 # Startup command
-server="./manage-tModLoaderServer.sh docker --folder /terraria-server"
+server="./manage-tModLoaderServer.sh start --folder /terraria-server"
 
 # Trap the shutdown
 trap shutdown TERM INT
